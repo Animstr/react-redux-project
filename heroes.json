@@ -1,0 +1,35 @@
+{
+  "heroes": [
+    {
+      "id": 2,
+      "name": "Неизвестный герой",
+      "description": "Скрывающийся в тени",
+      "element": "wind"
+    },
+    {
+      "name": "daniil",
+      "description": "что-то я да умею",
+      "element": "all",
+      "id": 3
+    },
+    {
+      "name": "Михаил",
+      "description": "Какать",
+      "element": "earth",
+      "id": 5
+    },
+    {
+      "name": "daniil shuliyatev",
+      "description": "asdasdasdad",
+      "element": "fire",
+      "id": 6
+    }
+  ],
+  "filters": [
+    "all",
+    "fire",
+    "water",
+    "wind",
+    "earth"
+  ]
+}
