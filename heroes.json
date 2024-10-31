@@ -1,28 +1,16 @@
 {
   "heroes": [
     {
-      "id": 2,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
-      "element": "wind"
+      "name": "Аквамен",
+      "description": "Умеет общаться с рыбами",
+      "element": "water",
+      "id": 1
     },
     {
-      "name": "daniil",
-      "description": "что-то я да умею",
-      "element": "all",
-      "id": 3
-    },
-    {
-      "name": "Михаил",
-      "description": "Какать",
-      "element": "earth",
-      "id": 5
-    },
-    {
-      "name": "daniil shuliyatev",
-      "description": "asdasdasdad",
+      "name": "Огненный ураган",
+      "description": "Неизвестно",
       "element": "fire",
-      "id": 6
+      "id": 2
     }
   ],
   "filters": [
