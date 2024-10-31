@@ -1,14 +1,16 @@
 import { useHttp } from "../../hooks/http.hook";
 import { Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from "react-redux";
-import { heroesFetched, heroesFetchingError } from "../../actions";
+import { heroesFetched, heroesFetchingError } from "../heroesList/heroestSlice";
+import {filtersFetched} from '../heroesFilters/filtersSlice';
 import {useEffect, useState} from 'react'
 
 const HeroesAddForm = () => {
 
     const {request} = useHttp();
     const dispatch = useDispatch();
-    let {heroes, filters} = useSelector(state => state);
+    let {heroes} = useSelector(state => state.heroes);
+    let {filters} = useSelector(state => state.filters);
     const [filter, setFilter] = useState([]);
 
     useEffect(() => {
@@ -20,7 +22,9 @@ const HeroesAddForm = () => {
             .then(data => {
                 heroes = [...heroes, data];
                 filters = [...filters, data.element]
-                dispatch(heroesFetched(heroes, filters))})
+                dispatch(heroesFetched(heroes));
+                dispatch(filtersFetched(filters))
+            })
             .catch( () => dispatch(heroesFetchingError()));
 
         values = {}; 

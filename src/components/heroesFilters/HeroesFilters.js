@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { filterHeroes } from "../../actions";
+import { filterHeroes } from "./filtersSlice";
 
 const HeroesFilters = () => {
-    const {filters, activeFilter} = useSelector(state => state);
+    const {filters, activeFilter} = useSelector(state => state.filters);
     const dispatch = useDispatch();
-    
+
     const setActiveFilter = (name) => {
         dispatch(filterHeroes(name));
     }

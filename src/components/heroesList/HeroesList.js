@@ -1,25 +1,26 @@
 import {useHttp} from '../../hooks/http.hook';
-import { useEffect, useCallback} from 'react';
+import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
-import { heroesFetching, heroesFetched, heroesFetchingError } from '../../actions';
+import { heroesFetching, heroesFetched, heroesFetchingError } from './heroestSlice';
+import { filtersFetched } from '../heroesFilters/filtersSlice';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
 const HeroesList = () => {
-    const {heroes, heroesLoadingStatus, filters} = useSelector(state => state);
+    const {heroes, heroesLoadingStatus} = useSelector(state => state.heroes);
+    const {filters} = useSelector(state => state.filters);
     const dispatch = useDispatch();
     const {request} = useHttp();
     let filter = [];
+
     const filteredHeroesSelector = createSelector(
-        (state) => state.heroes,
-        (state) => state.activeFilter,
+        (state) => state.heroes.heroes,
+        (state) => state.filters.activeFilter,
         (arr, filter) => {
             if (arr.length === 0) {
                 return <h5 className="text-center mt-5">Героев пока нет</h5>
             }
-            console.log('render');
-            
             return arr.map(({id, element, ...props}) => {
                 if (element == filter || element == 'all' || filter == 'all') {
                     return <HeroesListItem 
@@ -41,7 +42,9 @@ const HeroesList = () => {
                 filter = data.map(hero => {
                     return hero.element;
                 })
-                dispatch(heroesFetched(data, filter))
+
+                dispatch(heroesFetched(data))
+                dispatch(filtersFetched(filter))
             })
             .catch(() => dispatch(heroesFetchingError()))
 
@@ -62,7 +65,8 @@ const HeroesList = () => {
                 }
                 return newData;
             })
-            dispatch(heroesFetched(newData.newHeroes, newData.newFilters))
+            dispatch(heroesFetched(newData.newHeroes))
+            dispatch(filtersFetched(newData.newFilters))
         })
             .catch(() => dispatch(heroesFetchingError()))
     }

@@ -11,6 +11,24 @@
       "description": "Неизвестно",
       "element": "fire",
       "id": 2
+    },
+    {
+      "name": "daniil shuliyatev",
+      "description": "something",
+      "element": "earth",
+      "id": 3
+    },
+    {
+      "name": "Капитан Америка",
+      "description": "Умеет кидать щит",
+      "element": "wind",
+      "id": 4
+    },
+    {
+      "name": "Мальчик",
+      "description": "Ничего не умеет",
+      "element": "all",
+      "id": 5
     }
   ],
   "filters": [
