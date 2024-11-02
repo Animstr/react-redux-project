@@ -13,24 +13,27 @@
       "id": 2
     },
     {
-      "name": "daniil shuliyatev",
-      "description": "something",
-      "element": "earth",
-      "id": 3
-    },
-    {
       "name": "Капитан Америка",
       "description": "Умеет кидать щит",
       "element": "wind",
       "id": 4
     },
     {
-      "name": "Мальчик",
-      "description": "Ничего не умеет",
+      "name": "daniil",
+      "description": "asdasd",
       "element": "all",
       "id": 5
     }
   ],
+  "usedFilters": {
+    "1": "water",
+    "2": "fire",
+    "4": "wind",
+    "5": "all"
+  },
+  "activeFilter": {
+    "1": "all"
+  },
   "filters": [
     "all",
     "fire",

@@ -1,32 +1,20 @@
 import { useHttp } from "../../hooks/http.hook";
 import { Formik, Form, Field } from 'formik';
-import { useDispatch, useSelector } from "react-redux";
-import { heroesFetched, heroesFetchingError } from "../heroesList/heroestSlice";
-import {filtersFetched} from '../heroesFilters/filtersSlice';
 import {useEffect, useState} from 'react'
+import { usePostHeroMutation } from "../../Api/apiSlice";
 
 const HeroesAddForm = () => {
 
     const {request} = useHttp();
-    const dispatch = useDispatch();
-    let {heroes} = useSelector(state => state.heroes);
-    let {filters} = useSelector(state => state.filters);
     const [filter, setFilter] = useState([]);
+    const [postHero, {isLoading}] = usePostHeroMutation();
 
     useEffect(() => {
         getFilters()
     }, [])
 
     const postNewHero = (values) => {
-        request("http://localhost:3001/heroes", "POST", JSON.stringify(values))
-            .then(data => {
-                heroes = [...heroes, data];
-                filters = [...filters, data.element]
-                dispatch(heroesFetched(heroes));
-                dispatch(filtersFetched(filters))
-            })
-            .catch( () => dispatch(heroesFetchingError()));
-
+        postHero(values).unwrap();
         values = {}; 
     }
 
@@ -79,7 +67,7 @@ const HeroesAddForm = () => {
                             required
                             name="description" 
                             className="form-control" 
-                            id="text" 
+                            id="description" 
                             placeholder="Что я умею?"
                             style={{"height": '130px'}}/>
                     </div>
